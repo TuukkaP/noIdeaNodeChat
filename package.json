@@ -1,7 +1,7 @@
 {
   "name": "noideanodechat",
-  "version": "0.0.0",
-  "main": "lib/noideanodechat.js",
+  "version": "0.0.1",
+  "main": "server.js",
   "description": "No idea what so ever.",
   "homepage": "user/repo",
   "bugs": "user/repo/issues",
