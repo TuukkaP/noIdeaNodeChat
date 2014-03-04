@@ -1,6 +1,7 @@
-var app = require('express')()
-    , server = require('http').createServer(app)
-    , io = require('socket.io').listen(server);
+var app = require('express')(),
+    server = require('http').createServer(app),
+    io = require('socket.io').listen(server),
+    validator = require('validator');
 
 server.listen(3000, function(){
     console.log("Initialized...");
@@ -17,12 +18,13 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('chatToServer', function (msg) {
         var myDate = new Date();
-        socket.emit('chatToClient', myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), socket.username, msg);
-        socket.broadcast.emit('chatToClient', myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), socket.username, msg);
+        socket.emit('chatToClient', myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), socket.username, validator.escape(msg));
+        socket.broadcast.emit('chatToClient', myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), socket.username, validator.escape(msg));
     });
 
-    socket.on('joinChat', function(username){
+    socket.on('joinChat', function(rawusername){
         var myDate = new Date();
+        var username = validator.escape(rawusername);
         socket.username = username;
         usernames[username] = username;
         socket.emit('chatToClient',  myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), 'SERVER', ' you have connected');
