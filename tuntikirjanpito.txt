@@ -1,0 +1,8 @@
+3.3 Maanantai
+	~ 5h opiskelua MEAN-stackista
+
+4.3 Tiistai
+	~ 8h chatin rakentamista (angularjs feilauksen jälkeen, joka vei eniten aikaa)
+
+5.3 Keskiviikko
+	~ 8h testien väsäämistä
