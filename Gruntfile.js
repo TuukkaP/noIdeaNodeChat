@@ -39,10 +39,14 @@ module.exports = function (grunt) {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'nodeunit']
       }
-    }
+    },
+     mocha: {
+          all: ['test/server_test.js']
+     }
   });
 
   // Default task.
+  grunt.loadNpmTasks('grunt-mocha');
   grunt.registerTask('default', ['jshint', 'nodeunit']);
 
 };
