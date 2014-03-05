@@ -7,9 +7,11 @@ Basic chat program using node.js and angularJS.
 
 Install
 
--install node.js
--clone repo
--"npm install" in the cloned directory
--"npm start"
+<ul>
+<li>install node.js</li>
+<li>clone repo</li>
+<li>"npm install" in the cloned directory</li>
+<li>"npm start"</li>
+</ul>
 
 Browse to "localhost:3000" and chat with yourself.
