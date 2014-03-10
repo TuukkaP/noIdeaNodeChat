@@ -38,7 +38,7 @@
     "expect.js": "latest"
   },
   "scripts": {
-    "test": "make test",
+    "test": "mocha test -R spec",
     "start": "node server.js"
   }
 }

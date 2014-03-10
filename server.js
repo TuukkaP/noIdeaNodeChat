@@ -1,41 +1,22 @@
-var app = require('express')(),
-    server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
-    validator = require('validator');
+var express  = require('express');
+var app = express();
+var http = require('http');
+var server = http.createServer(app);
+
+app.configure(function() {
+    app.use(express.static(__dirname + '/public'));
+    app.use(express.logger('dev'));
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
+
+//routes
+require('./lib/index')(app);
 
 server.listen(3000, function(){
     console.log("Initialized...");
 });
 
-app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/public/index.html');
-});
-
-// usernames which are currently connected to the chat
-var usernames = {};
-
-io.sockets.on('connection', function (socket) {
-
-    socket.on('chatToServer', function (msg) {
-        var myDate = new Date();
-        socket.emit('chatToClient', myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), socket.username, validator.escape(msg));
-        socket.broadcast.emit('chatToClient', myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), socket.username, validator.escape(msg));
-    });
-
-    socket.on('joinChat', function(rawusername){
-        var myDate = new Date();
-        var username = validator.escape(rawusername);
-        socket.username = username;
-        usernames[username] = username;
-        socket.emit('chatToClient',  myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), 'SERVER', ' you have connected');
-        socket.broadcast.emit('chatToClient',  myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), 'SERVER', username + ' has connected');
-        io.sockets.emit('userList', usernames);
-    });
-
-    socket.on('disconnect', function(){
-        var myDate = new Date();
-        delete usernames[socket.username];
-        io.sockets.emit('userList', usernames);
-        socket.broadcast.emit('chatToClient',  myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(), socket.username, 'disconnected');
-    });
-});
+var io = require('socket.io').listen(server);
+require('./lib/socket')(io);

@@ -6,3 +6,6 @@
 
 5.3 Keskiviikko
 	~ 8h testien v‰s‰‰mist‰
+
+9.3 Sunnuntai
+	~ 8h angularjs + firebase + socket h‰ss‰kk‰‰, se on n‰ht‰vill‰ angular branchissa. Mutta koska testit ei ehtiny valmiiks dedikseen menness‰ se j‰‰ branchiin.
