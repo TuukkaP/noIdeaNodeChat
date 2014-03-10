@@ -2,7 +2,7 @@
 
 angular.module('angularApp')
     .controller('MainCtrl', ["$scope", "$firebase", "$cookieStore", "socket", "$route", function ($scope, $firebase, $cookieStore, socket, $route) {
-        $scope.messages = $firebase((new Firebase("https://sizzling-fire-2622.firebaseio.com/messages")).limit(10));
+        $scope.messages = $firebase((new Firebase("https://*.firebaseio.com/messages")).limit(10));
         $scope.users = [];
 
         socket.on('connect', function(){
