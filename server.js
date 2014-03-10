@@ -17,7 +17,7 @@ require('./lib/index')(app);
 server.listen(3000, function(){
     console.log("Initialized...");
 });
-//
-//var io = require('socket.io').listen(server);
-//
-//require('./lib/socket.js')(io);
+
+var io = require('socket.io').listen(server);
+
+require('./lib/socket.js')(io);

@@ -1,32 +1,62 @@
 'use strict';
 
 angular.module('angularApp')
-    .controller('MainCtrl', ["$scope", "$firebase", "$cookieStore", function ($scope, $firebase, $cookies) {
-        var users = new Firebase("https://sizzling-fire-2622.firebaseio.com/users");
-        $scope.messages = $firebase((new Firebase("https://sizzling-fire-2622.firebaseio.com/messages")).limit(50));
-        $scope.users = $firebase(new Firebase("https://sizzling-fire-2622.firebaseio.com/users"));
+    .controller('MainCtrl', ["$scope", "$firebase", "$cookieStore", "socket", "$route", function ($scope, $firebase, $cookieStore, socket, $route) {
+        $scope.messages = $firebase((new Firebase("https://sizzling-fire-2622.firebaseio.com/messages")).limit(10));
+        $scope.users = [];
 
-        if ($scope.username == null) {
+        socket.on('connect', function(){
+            socket.emit('users');
+            if (typeof $cookieStore.get('username') !== "undefined") {
+                $scope.username = $cookieStore.get('username');
+                socket.emit('joinChat', $scope.username);
+            }
+        });
+
+        angular.element(document).ready(function () {
+            if (socket.socket.connected === true && typeof $cookieStore.get('username') !== "undefined") {
+                $scope.username = $cookieStore.get('username');
+                socket.emit('users');
+            }
+        });
+
+        $scope.login = function() {
+            console.log("Login kutsuttu");
             $scope.username = prompt("What's your name?");
-            var username = users.push();
-            $cookies.username = $scope.username;
-            username.set($scope.username);
-        }
+            socket.emit('joinChat', $scope.username);
+            $cookieStore.put('username', $scope.username);
+        };
+
+        socket.on('chatToClient', function (time, username, msg) {
+            $scope.messages.$add({
+                time: time,
+                username: username,
+                message: msg
+            });
+        });
 
         $scope.chat = function() {
-            var myDate = new Date();
             $scope.messages.$add({
-                time: myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds(),
-                username: $cookies.username,
+                time: new Date().toString(),
+                username: $scope.username,
                 message: $scope.chat.msg
             });
             $scope.chat.msg = '';
         };
 
-        $scope.quit = function() {
-//            $cookieStore.remove('username');
-            username.remove();
-            $scope.username = null;
-        }
+        socket.on('userList', function(data) {
+            $scope.$apply(function () {
+                $scope.users = data;
+                console.log(data);
+            });
+        });
 
+        $scope.quit = function() {
+            $cookieStore.remove('username');
+            delete $scope.username;
+            socket.disconnect();
+            $route.reload();
+        };
     }]);
+
+

@@ -5,6 +5,7 @@ var app = angular.module('angularApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'angularMoment',
   'firebase'
 ]);
 
@@ -38,4 +39,21 @@ app.config(function ($routeProvider) {
 //             username = value;
 //         }
 //     };
+// });
+// app.factory('userListService', function(){
+//     var users;
+//     return {
+//        getUsers: function() {
+//            return users;
+//        },
+//        setUsers: function(userList) {
+//            users = userList;
+//        }
+//     };
+//     this.getUsers = function () {
+//         return users;
+//     };
+//     this.setUsers = function(userList){
+//         users = userList;
+//     }
 // });

@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('angularApp')
-    .controller('AboutCtrl', function ($scope, $cookieStore) {
-        $scope.sname =  $cookieStore.get('username');
-    });
+    .controller('AboutCtrl', ["$scope", "$firebase", "$cookieStore", function ($scope, $firebase, $cookieStore) {
+        $scope.username =  $cookieStore.get("username");
+    }]);
