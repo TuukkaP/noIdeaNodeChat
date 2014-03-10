@@ -14,9 +14,7 @@ app.configure(function() {
 //routes
 require('./lib/index')(app);
 
-server.listen(process.env.PORT || 3000){
-    console.log("Initialized...");
-});
+server.listen(process.env.PORT || 3000);
 
 var io = require('socket.io').listen(server);
 require('./lib/socket')(io);
