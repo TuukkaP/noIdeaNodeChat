@@ -1,0 +1,29 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#">About</a></li>
+  </ul>
+  <h3 class="text-muted">noIdeaNodeChat</h3>
+</div>
+<h1>Chat Real-time::{{username}}</h1>
+
+<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+    <b>USERS</b>
+    <div id="users">
+        <p ng-repeat="user in users" ng-bind-html="user"> {{user}}<br></p>
+    </div>
+</div>
+<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;" >
+    <p ng-repeat="message in messages"><{{message.time}}> {{message.username}}: {{message.message}}<br></p>
+    <form ng-submit="chat()">
+        <input type="text" ng-model="chat.msg"/>
+        <input type="submit" class="btn-primary"/>
+    </form>
+
+    <button ng-click="quit()" ng-show="username" class="btn-danger">Quit chat</button>
+
+</div>
+
+<div class="footer">
+  <p>♥ from the Yeoman team</p>
+</div>
