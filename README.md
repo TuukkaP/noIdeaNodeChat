@@ -15,3 +15,6 @@ Install
 </ul>
 
 Browse to "localhost:3000" and chat with yourself.
+
+Also now on heroku
+http://cryptic-falls-2991.herokuapp.com/
