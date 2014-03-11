@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('angularApp')
-    .controller('MainCtrl', ["$scope", "$firebase", "$cookieStore", "socket", "$route", function ($scope, $firebase, $cookieStore, socket, $route) {
-        $scope.messages = $firebase((new Firebase("https://*.firebaseio.com/messages")).limit(10));
+    .controller('MainCtrl', ["$scope", "messages", "$cookieStore", "socket", "$route", function ($scope, $messages, $cookieStore, socket, $route) {
+        $scope.messages = messages;
         $scope.users = [];
 
         socket.on('connect', function(){

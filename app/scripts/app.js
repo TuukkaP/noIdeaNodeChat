@@ -9,9 +9,13 @@ var app = angular.module('angularApp', [
   'firebase'
 ]);
 
- app.factory('socket', function(){
+app.factory('socket', function(){
      return io.connect('/');
  });
+
+app.factory('messages', function($firebase){
+	return $firebase((new Firebase("https://*.firebaseio.com/messages")).limit(10));
+});
 
 app.config(function ($routeProvider) {
     $routeProvider
