@@ -14,7 +14,7 @@ app.factory('socket', function(){
  });
 
 app.factory('messages', function($firebase){
-	return $firebase((new Firebase("https://*.firebaseio.com/messages")).limit(10));
+	return $firebase((new Firebase("https://sizzling-fire-2622.firebaseio.com/messages")).limit(10));
 });
 
 app.config(function ($routeProvider) {

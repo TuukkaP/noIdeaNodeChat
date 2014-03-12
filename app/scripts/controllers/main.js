@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularApp')
-    .controller('MainCtrl', ["$scope", "messages", "$cookieStore", "socket", "$route", function ($scope, $messages, $cookieStore, socket, $route) {
+    .controller('MainCtrl', ["$scope", "messages", "$cookieStore", "socket", "$route", function ($scope, messages, $cookieStore, socket, $route) {
         $scope.messages = messages;
         $scope.users = [];
 
