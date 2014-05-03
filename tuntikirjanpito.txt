@@ -1,11 +1,9 @@
-3.3 Maanantai
-	~ 5h opiskelua MEAN-stackista
+4.5. - 7.5.
+	-AngularJS branchin yhdist√§minen ja fiksailu
+	-Firebase integrointi
+	-Socket.io fixaus userlistalle
+	-Kirjautumish√§ss√§k√∂inti
+	-Aina yht√§ helppo herokuun laittaminen
 
-4.3 Tiistai
-	~ 8h chatin rakentamista (angularjs feilauksen j‰lkeen, joka vei eniten aikaa)
 
-5.3 Keskiviikko
-	~ 8h testien v‰s‰‰mist‰
-
-9.3 Sunnuntai
-	~ 8h angularjs + firebase + socket h‰ss‰kk‰‰, se on n‰ht‰vill‰ angular branchissa. Mutta koska testit ei ehtiny valmiiks dedikseen menness‰ se j‰‰ branchiin.
+Yht. 20 h
