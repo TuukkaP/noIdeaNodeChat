@@ -1,9 +1,9 @@
-noIdeaNodeChat, NodeJS project 2014
+noIdeaNodeChat extended with AngularJS
 ==============
 
-Computer Science @ University of Helsinki, NodeJS Project 2014
+Computer Science @ University of Helsinki, AngularJS Project 2014
 
-Basic chat program using node.js and angularJS.
+Basic chat program using node.js, angularJS, socket.io and firebase.
 
 Install
 
@@ -14,7 +14,5 @@ Install
 <li>"npm start"</li>
 </ul>
 
-Browse to "localhost:3000" and chat with yourself.
-
-Also now on heroku
-http://cryptic-falls-2991.herokuapp.com/
+Heroku:
+http://calm-falls-6589.herokuapp.com/
